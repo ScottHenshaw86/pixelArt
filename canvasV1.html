@@ -1,0 +1,52 @@
+<style>
+    .row {
+        display: flex;
+    }
+    .cell {
+        width: 20px;
+        height: 20px;
+        border: 1px solid lightgrey;
+    }
+    #palette {
+        display: flex;
+    }
+    .color {
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+    }
+    .black {
+        background-color: black;
+    }
+</style>
+
+<h1>Pixel Art</h1>
+<div id="grid">
+    <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+    <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+</div>
+<h2>Choose a color:</h2>
+<div id="palette">
+    <div class="color white" onclick="changeColor('white')"></div>
+    <div class="color black" onclick="changeColor('black')"></div>
+</div>
+
+<script>
+    let selectedColor = "black";
+    let cells = document.querySelectorAll('.cell');
+    for (let cell of cells) {
+        cell.onclick = function() {
+            this.style.backgroundColor = selectedColor;
+        }
+    }
+
+    function changeColor(color) {
+        selectedColor = color;
+    }
+</script>

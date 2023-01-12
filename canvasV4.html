@@ -1,0 +1,97 @@
+<style>
+    .row {
+        display: flex;
+    }
+
+    .cell {
+        outline: .5px solid rgba(150, 150, 150);
+    }
+
+    #palette {
+        display: flex;
+    }
+
+    #palette div {
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+    }
+
+    #grid {
+        height: 400px;
+        width: 400px;
+    }
+</style>
+
+<h1>Pixel Art</h1>
+<div id="grid"></div>
+<h2><label>Select Grid Size: </label><input type="number" name="size" id="size" value="10" min="1" max="100"
+        placeholder="size"></h2>
+<h2>Choose a color:</h2>
+<div id="palette">
+    <div class="white" onclick="changeColor('white')"></div>
+    <div class="black" onclick="changeColor('black')"></div>
+    <div class="red" onclick="changeColor('red')"></div>
+    <div class="orange" onclick="changeColor('orange')"></div>
+    <div class="yellow" onclick="changeColor('yellow')"></div>
+    <div class="green" onclick="changeColor('green')"></div>
+    <div class="blue" onclick="changeColor('blue')"></div>
+    <div class="purple" onclick="changeColor('purple')"></div>
+    <div class="pink" onclick="changeColor('pink')"></div>
+    <div class="brown" onclick="changeColor('brown')"></div>
+</div>
+
+<script>
+    let isColoring = false;
+    let selectedColor = "black";
+    let numCells = 10;
+
+    function createGrid(numCells) {
+        for (let row = 0; row < numCells; row++) {
+            let newRow = document.createElement('div');
+            newRow.className = "row";
+            for (let col = 0; col < numCells; col++) {
+                let newCell = document.createElement('div');
+                newCell.className = "cell";
+                let size = 400 / numCells;
+                newCell.style.height = size + 'px';
+                newCell.style.width = size + 'px';
+                newCell.onclick = function () {
+                    this.style.backgroundColor = selectedColor;
+                }
+                newCell.addEventListener("mousemove", function () {
+                    if (isColoring) {
+                        this.style.backgroundColor = selectedColor;
+                    }
+                })
+                newRow.appendChild(newCell);
+            }
+            grid.appendChild(newRow);
+        }
+
+    }
+
+    let colors = document.querySelectorAll("#palette div");
+    for (let color of colors) {
+        color.style.backgroundColor = color.className;
+    }
+
+    function changeColor(color) {
+        selectedColor = color;
+    }
+
+    document.onmousedown = function () {
+        isColoring = true;
+    }
+    document.onmouseup = function () {
+        isColoring = false;
+    }
+
+    size.onchange = function () {
+        numCells = size.value;
+        grid.innerHTML = "";
+        createGrid(numCells);
+    }
+
+    createGrid(numCells);
+</script>
