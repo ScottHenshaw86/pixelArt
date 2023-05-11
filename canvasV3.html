@@ -2,15 +2,18 @@
     .row {
         display: flex;
     }
+
     .cell {
         width: 20px;
         height: 20px;
         border: 1px solid black;
     }
+
     #palette {
         display: flex;
     }
-    #palette div{
+
+    #palette div {
         width: 30px;
         height: 30px;
         border: 1px solid black;
@@ -207,12 +210,14 @@
     let selectedColor = "black";
     let cells = document.querySelectorAll('.cell');
     for (let cell of cells) {
-        cell.onclick = function() {
-            this.style.backgroundColor = selectedColor;
-        }
-        cell.addEventListener("mousemove", function() {
+
+        cell.addEventListener("click", function () {
+            cell.style.backgroundColor = selectedColor;
+        })
+
+        cell.addEventListener("mousemove", function () {
             if (isColoring) {
-                this.style.backgroundColor = selectedColor;
+                cell.style.backgroundColor = selectedColor;
             }
         })
     }
@@ -226,10 +231,10 @@
         selectedColor = color;
     }
 
-    document.onmousedown = function() {
+    document.onmousedown = function () {
         isColoring = true;
     }
-    document.onmouseup = function() {
+    document.onmouseup = function () {
         isColoring = false;
     }
 </script>

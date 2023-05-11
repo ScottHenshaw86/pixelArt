@@ -1,23 +1,51 @@
 <style>
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    header {
+        width: 100%;
+        height: 80px;
+        background-color: dodgerblue;
+        color: white;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    img {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
     .row {
         display: flex;
     }
+
     .cell {
         width: 20px;
         height: 20px;
-        border: 1px solid black;
+        border: .5px solid lightgrey;
     }
+
     #palette {
         display: flex;
     }
-    #palette div{
+
+    #palette div {
         width: 30px;
         height: 30px;
         border: 1px solid black;
     }
 </style>
-
-<h1>Pixel Art</h1>
+<header>
+    <img src="./wcoding-logo.svg" alt="" height="50">
+    <h1>Pixel Art</h1>
+</header>
 <div id="grid">
     <div class="row">
         <div class="cell"></div>
@@ -206,9 +234,9 @@
     let selectedColor = "black";
     let cells = document.querySelectorAll('.cell');
     for (let cell of cells) {
-        cell.onclick = function() {
-            this.style.backgroundColor = selectedColor;
-        }
+        cell.addEventListener("click", function () {
+            cell.style.backgroundColor = selectedColor;
+        })
     }
 
     let colors = document.querySelectorAll("#palette div");
